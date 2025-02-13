@@ -1,0 +1,20 @@
+{
+  "name": "proyecto2",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "project": "nodemon run index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "body-parser": "^1.20.3",
+    "express": "^4.21.2",
+    "mongodb": "^6.13.0",
+    "morgan": "^1.10.0",
+    "nodemon": "^3.1.9",
+    "uuid": "^11.0.5"
+  }
+}
