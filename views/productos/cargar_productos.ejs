@@ -1,0 +1,26 @@
+<div class="cargar-producto">
+ <br>
+ <h3 class="text-center">CARGAR NUEVO PRODUCTO</h3>
+ <form action="productos/agregar" method="post">
+  <br>
+  <label class="container-sm"> Nombre:
+   <input class="form-control" type="text" name="nombre" placeholder="Nombre del producto" aria-label="default input example">
+  </label>
+  <br><br>
+  <div class="container row">
+   <label class="col-6">Precio
+    <input class="form-control" type="text" name="precio" placeholder="Precio" aria-label="default input example">
+   </label> 
+   <label class="col-6">Cantidad
+    <input class="form-control" type="text" name="cantidad"  placeholder="Cantidad" aria-label="default input example">
+   </label> 
+  </div>
+  <br><br>
+  <input class="ms-3 p-1 px-4"  type="reset" value="Limpiar">
+  <br>
+  <div class="container d-flex justify-content-end">
+   <input class="p-1 px-4" type="submit" value="Enviar">
+  </div>
+  <br>
+ </form>
+</div>

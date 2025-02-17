@@ -33,22 +33,19 @@ modificarProducto,
 async function obtenerTodosLosProductos() {
   try {
     const db = await conectarDB();
-    console.log(await db.collection(coleccion).countDocuments());
     const lista = await db.collection(coleccion).find({estaActivo:true}).toArray();
     return lista;
   } catch (error) {
     console.error("❌ Error al obtener productos:", error);
     throw error;
-  } finally {
-    await client.close();
   }
 }
 
 async function obtenerProductoID(productoID) {
   try {
     const db = await conectarDB();
-    const producto = await db.collection(coleccion).findOne({ id: Number(productoID) });
-    console.log(producto);
+    const producto = await db.collection(coleccion).findOne({ id: Number(productoID), estaActivo: true });
+    // console.log("Obtener ID: "+producto);
     return producto;
   } catch (error) {
     console.error(
@@ -67,7 +64,8 @@ const crearNuevoProducto = async (producto) => {
     await db.collection(coleccion).insertOne({
       id: id,
       nombre: producto.nombre,
-      precio: producto.precio,
+     precio: producto.precio,
+      cantidad: producto.cantidad,
       estaActivo: true,
       fechaDeRegistro: new Date().toLocaleDateString(),
       encodedKey: uuidv4(),
@@ -93,8 +91,8 @@ const eliminarProducto = async (id) => {
 const modificarProducto = async (producto) => {
   try {
     const db = await conectarDB();
-    const productoActual = obtenerProductoID(producto.id)
-    if (!productoActual) {
+    const productoActual = await obtenerProductoID(producto.id)
+    if (productoActual === null) {
       console.log(`No se encontró el producto con ID ${producto.id}`);
       return;
     }
